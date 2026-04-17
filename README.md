@@ -25,7 +25,6 @@ This is a solution to the [REST Countries API with color theme switcher challeng
 
 ## Overview
 
-GitSeeker was built as a solution to the associated Frontend Mentor challenge (with updated styling), providing a streamlined utility to search for GitHub user profiles, as well as an opportunity to continue practicing developing with modern React patterns. The app consumes the public [GitHub REST API](https://docs.github.com/en/rest) — no authentication required.
 
 
 ### Features
