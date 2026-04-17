@@ -1,8 +1,10 @@
 
 function Home() {
   return (
-    <div className="">Home - countries will go here</div>
-  )
+    <div className="py-6">
+      Home - countries will go here
+    </div>
+  );
 }
 
 export default Home;

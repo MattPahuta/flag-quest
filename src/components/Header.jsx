@@ -9,7 +9,9 @@ function Header() {
     <header className="py-6 px-4 sm:px-10 bg-zinc-50 dark:bg-gray-700 shadow-md transition-colors duration-300">
       <div className="max-w-7xl mx-auto flex items-center justify-between">
         <h1 className="text-2xl font-bold tracking-tight">
-          <Link to="/" className="">
+          <Link
+            to="/"
+            className="rounded-lg hover:opacity-75 transition-opacity hover:cursor-pointer focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600">
             FlagQuest
           </Link>
         </h1>
@@ -17,15 +19,14 @@ function Header() {
         <button
           type="button"
           onClick={toggleDarkMode}
-          aria-label="Toggle color theme"
-          className="py-1 flex items-center gap-2 font-semibold text-zinc-950 dark:text-zinc-50 hover:opacity-75 transition-opacity hover:cursor-pointer">
+          aria-label="Toggle color theme button"
+          className="py-1 px-2 inline-flex items-center justify-center gap-2 font-medium text-center text-zinc-950 dark:text-zinc-50 rounded-lg hover:opacity-75 transition-opacity hover:cursor-pointer focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600">
           {darkMode ? (
             <>
               <svg
-                className="size-5"
                 xmlns="http://www.w3.org/2000/svg"
-                // width="24"
-                // height="24"
+                width="18"
+                height="18"
                 viewBox="0 0 24 24">
                 <path
                   fill="currentColor"

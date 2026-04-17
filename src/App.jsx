@@ -10,10 +10,13 @@ function App() {
       <BrowserRouter>
         <div className="min-h-screen bg-gray-100 text-zinc-950 dark:bg-gray-800 dark:text-zinc-50 transition-colors duration-300">
           <Header />
-          <main>
+          <main className="px-4 sm:px-10">
             <Routes>
               <Route path="/" element={<Home />} />
-              <Route path="/country/:id" element={<CountryDetail />} />
+              <Route
+                path="/country/:id"
+                element={<CountryDetail />}
+              />
             </Routes>
           </main>
         </div>
