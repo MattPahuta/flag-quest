@@ -1,12 +1,13 @@
 import { useState, useMemo } from "react";
-import { useCountries } from "../hooks/useCountries";
+// import { useCountries } from "../hooks/useCountries";
+import { useCountriesContext } from "../context/CountriesContext";
 import CountryCard from "../components/CountryCard";
 import Loader from "../components/Loader";
 
 const REGIONS = ["Africa", "Americas", "Asia", "Europe", "Oceania"];
 
 function Home() {
-  const { countries, loading, error } = useCountries();
+  const { countries, loading, error } = useCountriesContext();
   const [search, setSearch] = useState("");
   const [selectedRegion, setSelectedRegion] = useState("");
 
