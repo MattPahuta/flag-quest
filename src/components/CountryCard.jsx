@@ -18,7 +18,7 @@ function CountryCard({ country }) {
         />
       </div>
       <div className="p-6 text-neutral-900 dark:text-zinc-50">
-        <h2 className="mb-3 text-lg font-bold  truncate">
+        <h2 className="mb-3 text-lg font-bold truncate">
           {name.common}
         </h2>
         <dl className="space-y-1 text-sm">

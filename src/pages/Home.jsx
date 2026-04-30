@@ -35,11 +35,11 @@ function Home() {
   }
 
   return (
-    <div className="max-w-7xl mx-auto py-10 px-6">
+    <div className="max-w-7xl mx-auto px-4 sm:px-10 xl:px-4">
       {/* search controls wrapper */}
       <div className="mb-10 flex flex-col gap-4 sm:flex-row justify-between">
         {/* search input group */}
-        <div className="relative grow lg:grow-0 lg:min-w-[480px]">
+        <div className="relative grow lg:grow-0 lg:min-w-120">
           <svg
             aria-hidden="true"
             focusable="false"
@@ -89,7 +89,7 @@ function Home() {
 
       {/* Countries Grid */}
       {filteredCountries.length > 0 ? (
-        <div className="grid gap-10 md:gap-16 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+        <div className="grid gap-10 md:gap-16 grid-cols-[repeat(auto-fit,minmax(min(260px,100%),1fr))]">
           {filteredCountries.map((country) => (
             <CountryCard key={country.cca3} country={country} />
           ))}

@@ -8,9 +8,9 @@ function App() {
   return (
     <ThemeProvider>
       <BrowserRouter>
-        <div className="min-h-screen bg-gray-100 text-neutral-900 dark:bg-gray-800 dark:text-zinc-50 transition-colors duration-300">
+        <div className="min-h-screen font-sans bg-gray-100 text-neutral-900 dark:bg-gray-800 dark:text-zinc-50 transition-colors duration-300">
           <Header />
-          <main className="px-4 sm:px-10">
+          <main className="py-10">
             <Routes>
               <Route path="/" element={<Home />} />
               <Route
