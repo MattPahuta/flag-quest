@@ -1,15 +1,13 @@
 import { Link } from "react-router-dom";
 import { formatPopulation, formatCapital } from "../utils/formatters";
 
-// ToDo: add better focus styles (outlines, etc.)
-
 function CountryCard({ country }) {
   const { name, flags, population, region, capital, cca3 } = country;
 
   return (
     <Link
       to={`/country/${cca3}`}
-      className="group block bg-white dark:bg-gray-700 rounded-lg shadow-md overflow-hidden hover:shadow-xl hover:-translate-y-1 transition-all duration-200">
+      className="group block bg-white dark:bg-gray-700 rounded-lg shadow-md overflow-hidden hover:shadow-xl hover:-translate-y-1 focus:outline-4 focus:outline-blue-600 outline-offset-4 transition duration-300">
       <div className="h-48 overflow-hidden">
         <img
           src={flags.svg || flags.png}
