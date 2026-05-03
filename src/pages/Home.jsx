@@ -36,7 +36,7 @@ function Home() {
   }
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-10 xl:px-4">
+    <div className="max-w-7xl mx-auto px-4 sm:px-10">
       {/* search controls wrapper */}
       <div className="mb-10 flex flex-col gap-4 sm:flex-row justify-between">
         {/* search input group */}

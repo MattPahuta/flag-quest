@@ -98,30 +98,44 @@ function CountryDetail() {
   } = country;
 
   return (
-    <div className="max-w-7xl mx-auto">
+    <div className="max-w-3xl lg:max-w-7xl mx-auto px-5 sm:px-16 lg:px-5">
       {/* back button */}
       <button
         type="button"
         onClick={() => navigate(-1)}
-        className="rounded-md bg-blue-600 px-3 py-2 text-sm font-semibold text-white shadow-xs hover:bg-blue-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600">
+        className="min-h-11 mb-16 inline-flex items-center justify-center border-none rounded-md bg-gray-300 dark:bg-gray-700 text-neutral-900 dark:text-gray-50 px-4 py-2 text-sm font-semibold shadow-md hover:bg-gray-700 dark:hover:bg-gray-600 hover:text-white focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-blue-600 cursor-pointer transition-colors">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          className="h-5">
+          <line x1="19" y1="12" x2="5" y2="12"></line>
+          <polyline points="12 19 5 12 12 5"></polyline>
+        </svg>
         Go Back
       </button>
 
       {/* country info container */}
       <div className="flex flex-col lg:flex-row gap-12 md:gap-14">
         {/* country flag */}
-        <div className="w-full">
+        <div className="">
           <img
             src={flags.svg || flags.png}
             alt={flags.alt || `flag of ${name.common}`}
-            className="w-full max-h-100 object-cover rounded-lg shadow-lg"
+            className="aspect-3/2 rounded-lg shadow-lg"
           />
         </div>
         {/* details */}
         <div className="full">
-          <h1 className="mb-4 text-2xl font-bold">{name.common}</h1>
+          <h1 className="mb-4 text-3xl font-bold">{name.common}</h1>
           {/* description list grid */}
-          <div className="mb-8 grid sm:grid-cols-2 gap-8">
+          <div className="mb-8 lg:mb-16 grid sm:grid-cols-2 gap-8">
             <dl className="space-y-2">
               <DescListRow
                 label="Native Name"
@@ -159,13 +173,15 @@ function CountryDetail() {
           {/* border countries - link buttons in flex row */}
           {borders && borders.length > 0 && (
             <div>
-              <h2 className="font-semibold">Border Countries:</h2>
-              <div className="flex flex-wrap gap-2">
+              <h2 className="mb-4 font-semibold">
+                Border Countries:
+              </h2>
+              <div className="flex flex-wrap gap-4">
                 {borders.map((cca3) => (
                   <Link
                     key={cca3}
                     to={`/country/${cca3}`}
-                    className="py-1 px-3.5 text-sm">
+                    className="inline-flex items-center justify-center border-none rounded-md bg-gray-200 dark:bg-gray-700 text-neutral-900 dark:text-gray-50 px-4 py-2 text-sm font-semibold shadow-md hover:bg-gray-700 dark:hover:bg-gray-600 hover:text-white focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-blue-600 cursor-pointer transition-colors">
                     {getBorderName(cca3)}
                   </Link>
                 ))}
