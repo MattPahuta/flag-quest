@@ -122,9 +122,9 @@ function CountryDetail() {
       </button>
 
       {/* country info container */}
-      <div className="flex flex-col lg:flex-row gap-12 md:gap-14">
+      <div className="grid items-center lg:grid-cols-2 gap-12 md:gap-14 xl:gap-20">
         {/* country flag */}
-        <div className="">
+        <div>
           <img
             src={flags.svg || flags.png}
             alt={flags.alt || `flag of ${name.common}`}
@@ -132,10 +132,10 @@ function CountryDetail() {
           />
         </div>
         {/* details */}
-        <div className="full">
+        <div>
           <h1 className="mb-4 text-3xl font-bold">{name.common}</h1>
           {/* description list grid */}
-          <div className="mb-8 lg:mb-16 grid sm:grid-cols-2 gap-8">
+          <div className="mb-8 lg:mb-16 grid sm:grid-cols-2 gap-8 md:gap-12">
             <dl className="space-y-2">
               <DescListRow
                 label="Native Name"
