@@ -1,5 +1,5 @@
-import { useState, useEffect } from "react";
-import { useParams, useNavigate, Link } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
+import { useCountryDetail } from "../hooks/useCountryDetail";
 import { useCountriesContext } from "../context/CountriesContext";
 import Loader from "../components/Loader";
 import {
@@ -11,53 +11,10 @@ import {
   formatTLD,
 } from "../utils/formatters";
 
-const BASE_URL = "https://restcountries.com/v3.1";
-
 function CountryDetail() {
-  const { id } = useParams();
-  const navigate = useNavigate();
+  const { country, loading, error } = useCountryDetail();
   const { countries } = useCountriesContext();
-  const [country, setCounty] = useState(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
-
-  // fetch details for specified country
-  useEffect(() => {
-    let cancelled = false;
-
-    async function fetchCountry() {
-      try {
-        setLoading(true);
-        setError(null);
-
-        const response = await fetch(`${BASE_URL}/alpha/${id}`);
-
-        if (!response.ok) {
-          throw new Error(`Country not found (${response.status})`);
-        }
-
-        const data = await response.json();
-
-        if (!cancelled) {
-          setCounty(data[0]); // API returns an array with a single item
-        }
-      } catch (error) {
-        if (!cancelled) {
-          setError(error.message);
-        }
-      } finally {
-        if (!cancelled) {
-          setLoading(false);
-        }
-      }
-    }
-
-    fetchCountry();
-
-    return () => {
-      cancelled = true;
-    };
-  }, [id]);
+  const navigate = useNavigate();
 
   // resolve the country's cca3 code to country's common name
   function getBorderName(cca3) {
@@ -67,16 +24,13 @@ function CountryDetail() {
 
   if (loading) return <Loader />;
 
-  // *** ToDo: style error container/back button
   if (error) {
     return (
-      <div className="max-w-7xl mx-auto py-20 flex justify-center items-center">
-        <p className="text-lg text-red-500 dark:text-red-400">
+      <div className="max-w-7xl space-y-6 mx-auto py-20 flex flex-col justify-center items-center">
+        <BackButton onClick={() => navigate(-1)} />
+        <p className="text-lg font-semibold text-red-500 dark:text-red-400">
           {error}
         </p>
-        <button onClick={() => navigate(-1)} className="flex">
-          Go back
-        </button>
       </div>
     );
   }
@@ -100,27 +54,7 @@ function CountryDetail() {
   return (
     <div className="max-w-3xl lg:max-w-7xl mx-auto px-5 sm:px-16 lg:px-5">
       {/* back button */}
-      <button
-        type="button"
-        onClick={() => navigate(-1)}
-        className="min-h-11 mb-16 inline-flex items-center justify-center border-none rounded-md bg-gray-300 dark:bg-gray-700 text-neutral-900 dark:text-gray-50 px-4 py-2 text-sm font-semibold shadow-md hover:bg-gray-700 dark:hover:bg-gray-600 hover:text-white focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-blue-600 cursor-pointer transition-colors">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="24"
-          height="24"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="2"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          className="h-5">
-          <line x1="19" y1="12" x2="5" y2="12"></line>
-          <polyline points="12 19 5 12 12 5"></polyline>
-        </svg>
-        Go Back
-      </button>
-
+      <BackButton onClick={() => navigate(-1)} />
       {/* country info container */}
       <div className="grid items-center lg:grid-cols-2 gap-12 md:gap-14 xl:gap-20">
         {/* country flag */}
@@ -132,7 +66,9 @@ function CountryDetail() {
         </div>
         {/* details */}
         <div>
-          <h1 className="mb-4 sm:mb-6 text-2xl sm:text-4xl font-bold">{name.common}</h1>
+          <h1 className="mb-4 sm:mb-6 text-2xl sm:text-4xl font-bold">
+            {name.common}
+          </h1>
           {/* description list grid */}
           <div className="grid sm:grid-cols-2 gap-8 md:gap-12">
             <dl className="space-y-2">
@@ -190,6 +126,32 @@ function CountryDetail() {
         </div>
       </div>
     </div>
+  );
+}
+
+// Internal component to render BackButton - rendered on detail page only
+function BackButton({ onClick }) {
+  return (
+    <button
+      type="button"
+      onClick={onClick}
+      className="min-h-11 mb-16 inline-flex items-center justify-center border-none rounded-md bg-gray-300 dark:bg-gray-700 text-neutral-900 dark:text-gray-50 px-4 py-2 text-sm font-semibold shadow-md hover:bg-gray-700 dark:hover:bg-gray-600 hover:text-white focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-blue-600 cursor-pointer transition-colors">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        className="h-5">
+        <line x1="19" y1="12" x2="5" y2="12"></line>
+        <polyline points="12 19 5 12 12 5"></polyline>
+      </svg>
+      Go Back
+    </button>
   );
 }
 
