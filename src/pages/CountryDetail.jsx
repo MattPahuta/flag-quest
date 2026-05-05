@@ -124,18 +124,17 @@ function CountryDetail() {
       {/* country info container */}
       <div className="grid items-center lg:grid-cols-2 gap-12 md:gap-14 xl:gap-20">
         {/* country flag */}
-        <div>
+        <div className="rounded-lg shadow-lg overflow-clip">
           <img
             src={flags.svg || flags.png}
             alt={flags.alt || `flag of ${name.common}`}
-            className="aspect-3/2 rounded-lg shadow-lg"
           />
         </div>
         {/* details */}
         <div>
-          <h1 className="mb-4 text-3xl font-bold">{name.common}</h1>
+          <h1 className="mb-4 sm:mb-6 text-2xl sm:text-4xl font-bold">{name.common}</h1>
           {/* description list grid */}
-          <div className="mb-8 lg:mb-16 grid sm:grid-cols-2 gap-8 md:gap-12">
+          <div className="grid sm:grid-cols-2 gap-8 md:gap-12">
             <dl className="space-y-2">
               <DescListRow
                 label="Native Name"
@@ -172,7 +171,7 @@ function CountryDetail() {
           </div>
           {/* border countries - link buttons in flex row */}
           {borders && borders.length > 0 && (
-            <div>
+            <div className="mt-8 lg:mt-16">
               <h2 className="mb-4 font-semibold">
                 Border Countries:
               </h2>
