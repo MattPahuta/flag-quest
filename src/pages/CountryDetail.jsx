@@ -97,24 +97,11 @@ function CountryDetail() {
               />
             </dl>
           </div>
-          {/* border countries - link buttons in flex row */}
-          {borders && borders.length > 0 && (
-            <div className="mt-8 lg:mt-16">
-              <h2 className="mb-4 font-semibold">
-                Border Countries:
-              </h2>
-              <div className="flex flex-wrap gap-4">
-                {borders.map((cca3) => (
-                  <Link
-                    key={cca3}
-                    to={`/country/${cca3}`}
-                    className="inline-flex items-center justify-center border-none rounded-md bg-gray-200 dark:bg-gray-700 text-neutral-900 dark:text-gray-50 px-4 py-2 text-sm font-semibold shadow-md hover:bg-gray-700 dark:hover:bg-gray-600 hover:text-white focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-blue-600 cursor-pointer transition-colors">
-                    {getBorderName(cca3)}
-                  </Link>
-                ))}
-              </div>
-            </div>
-          )}
+
+          <BorderCountries
+            borders={borders}
+            getBorderName={getBorderName}
+          />
         </div>
       </div>
     </div>
@@ -153,6 +140,27 @@ function DescListRow({ label, value }) {
     <div className="flex gap-1">
       <dt className="font-semibold">{label}:</dt>
       <dd>{value}</dd>
+    </div>
+  );
+}
+
+// Render border countries
+function BorderCountries({ borders, getBorderName }) {
+  if (!borders || borders.length === 0) return null;
+
+  return (
+    <div className="mt-8 lg:mt-16">
+      <h2 className="mb-4 font-semibold">Border Countries:</h2>
+      <div className="flex flex-wrap gap-4">
+        {borders.map((cca3) => (
+          <Link
+            key={cca3}
+            to={`/country/${cca3}`}
+            className="inline-flex items-center justify-center border-none rounded-md bg-gray-200 dark:bg-gray-700 text-neutral-900 dark:text-gray-50 px-4 py-2 text-sm font-semibold shadow-md hover:bg-gray-700 dark:hover:bg-gray-600 hover:text-white focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-blue-600 cursor-pointer transition-colors">
+            {getBorderName(cca3)}
+          </Link>
+        ))}
+      </div>
     </div>
   );
 }
