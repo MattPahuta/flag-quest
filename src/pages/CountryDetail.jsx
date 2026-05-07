@@ -2,6 +2,7 @@ import { useNavigate, Link } from "react-router-dom";
 import { useCountryDetail } from "../hooks/useCountryDetail";
 import { useCountriesContext } from "../context/CountriesContext";
 import Loader from "../components/Loader";
+import NotFound from "./NotFound";
 import {
   formatPopulation,
   formatCapital,
@@ -24,16 +25,7 @@ function CountryDetail() {
 
   if (loading) return <Loader />;
 
-  if (error) {
-    return (
-      <div className="max-w-7xl space-y-6 mx-auto py-20 flex flex-col justify-center items-center">
-        <BackButton onClick={() => navigate(-1)} />
-        <p className="text-lg font-semibold text-red-500 dark:text-red-400">
-          {error}
-        </p>
-      </div>
-    );
-  }
+  if (error) return <NotFound />;
 
   if (!country) return null;
 
@@ -129,7 +121,7 @@ function CountryDetail() {
   );
 }
 
-// Internal component to render BackButton - rendered on detail page only
+// Internal component to render BackButton
 function BackButton({ onClick }) {
   return (
     <button

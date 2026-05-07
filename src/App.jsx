@@ -4,6 +4,7 @@ import { CountriesProvider } from "./context/CountriesContext";
 import Header from "./components/Header";
 import Home from "./pages/Home";
 import CountryDetail from "./pages/CountryDetail";
+import NotFound from "./pages/NotFound";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
                   path="/country/:id"
                   element={<CountryDetail />}
                 />
+                <Route path="*" element={<NotFound />} />
               </Routes>
             </main>
           </div>
