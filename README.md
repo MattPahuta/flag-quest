@@ -5,9 +5,9 @@ FlagQuest is a responsive country explorer built with React, React Router, and T
 This is a solution to the [REST Countries API with color theme switcher challenge on Frontend Mentor](https://www.frontendmentor.io/challenges/rest-countries-api-with-color-theme-switcher-5cacc469fec04111f7b848ca). Frontend Mentor challenges help you improve your coding skills by building realistic projects. 
 
 
-![](./ss_home-page.jpg)
+![](./src/assets/ss_home-page.jpg)
 
-![](./ss_detail-page.jpg)
+![](./src/assets/ss_detail-page.jpg)
 
 
 ## Table of Contents
@@ -43,7 +43,7 @@ Users may:
 ### Links
 
 - [Frontend Mentor solution page](https://your-solution-url.com)
-- [live demo site](https://example-live-demo.app)
+- [live demo site](https://resilient-platypus-dcfded.netlify.app/)
 
 
 ### Tech Stack

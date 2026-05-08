@@ -5,7 +5,7 @@ const BASE_URL = "https://restcountries.com/v3.1";
 
 export function useCountryDetail() {
   const { id } = useParams();
-  const [country, setCounty] = useState(null);
+  const [country, setCountry] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
@@ -26,7 +26,7 @@ export function useCountryDetail() {
           const data = await response.json();
   
           if (!cancelled) {
-            setCounty(data[0]); // API returns an array with a single item
+            setCountry(data[0]); // API returns an array with a single item
           }
         } catch (error) {
           if (!cancelled) {

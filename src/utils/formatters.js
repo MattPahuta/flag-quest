@@ -4,6 +4,7 @@
  * Format the raw population integer from API to locale-aware string
  */
 export function formatPopulation(number) {
+  if (!number || number == undefined) return 'N/A';
   return number.toLocaleString();
 }
 

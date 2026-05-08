@@ -7,9 +7,9 @@ export function CountriesProvider({ children }) {
   const { countries, loading, error } = useCountries();
 
   return (
-    <CountriesContext value={{ countries, loading, error }}>
+    <CountriesContext.Provider value={{ countries, loading, error }}>
       {children}
-    </CountriesContext>
+    </CountriesContext.Provider>
   );
 }
 
