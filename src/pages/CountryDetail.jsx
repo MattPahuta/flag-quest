@@ -17,7 +17,6 @@ function CountryDetail() {
   const { countries } = useCountriesContext();
   const navigate = useNavigate();
 
-  // resolve the country's cca3 code to country's common name
   function getBorderName(cca3) {
     const found = countries.find((country) => country.cca3 === cca3);
     return found ? found.name.common : cca3; // fallback to returning code if not found
@@ -29,7 +28,6 @@ function CountryDetail() {
 
   if (!country) return null;
 
-  // destructure needed country data
   const {
     name,
     flags,
@@ -45,23 +43,18 @@ function CountryDetail() {
 
   return (
     <div className="max-w-3xl lg:max-w-7xl mx-auto px-5 sm:px-16 lg:px-5">
-      {/* back button */}
       <BackButton onClick={() => navigate(-1)} />
-      {/* country info container */}
       <div className="grid items-center lg:grid-cols-2 gap-12 md:gap-14 xl:gap-20">
-        {/* country flag */}
         <div className="rounded-lg shadow-lg overflow-clip">
           <img
             src={flags.svg || flags.png}
             alt={flags.alt || `flag of ${name.common}`}
           />
         </div>
-        {/* details */}
         <div>
           <h1 className="mb-4 sm:mb-6 text-2xl sm:text-4xl font-bold">
             {name.common}
           </h1>
-          {/* description list grid */}
           <div className="grid sm:grid-cols-2 gap-8 md:gap-12">
             <dl className="space-y-2">
               <DescListRow
@@ -97,7 +90,6 @@ function CountryDetail() {
               />
             </dl>
           </div>
-
           <BorderCountries
             borders={borders}
             getBorderName={getBorderName}
@@ -108,7 +100,6 @@ function CountryDetail() {
   );
 }
 
-// Internal component to render BackButton
 function BackButton({ onClick }) {
   return (
     <button
@@ -134,7 +125,6 @@ function BackButton({ onClick }) {
   );
 }
 
-// Internal component to facilitate description list items
 function DescListRow({ label, value }) {
   return (
     <div className="flex gap-1">
@@ -144,7 +134,6 @@ function DescListRow({ label, value }) {
   );
 }
 
-// Render border countries
 function BorderCountries({ borders, getBorderName }) {
   if (!borders || borders.length === 0) return null;
 

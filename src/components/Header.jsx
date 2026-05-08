@@ -4,7 +4,6 @@ import { useTheme } from "../context/ThemeContext";
 function Header() {
   const { darkMode, toggleDarkMode } = useTheme();
 
-  // Test: if transition-colors and duration needed here
   return (
     <header className="py-6 px-4 sm:px-10 bg-zinc-50 dark:bg-gray-700 shadow-md transition-colors duration-300">
       <div className="max-w-7xl mx-auto flex items-center justify-between">

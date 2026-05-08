@@ -9,7 +9,6 @@ export function useCountryDetail() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-    // fetch details for specified country
     useEffect(() => {
       let cancelled = false;
   
