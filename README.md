@@ -170,6 +170,7 @@ Proper semantic HTML and ARIA attributes are utilized throughout the project. Fo
   </div>
 </dl>
 ```
+Note: I was initially wary of wrapping the `dt` and `dd` pairs in `div`s (to facilitate styling to match the design comp) out of fear I'd break accessibility, but a quick reference check of the [MDN Web Docs](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/dl#wrapping_name-value_groups_in_div_elements) resolved that fear.
 
 ## API Reference
  
