@@ -1,7 +1,8 @@
 import { useState, useEffect} from 'react';
+import { loadCountries } from '../data/countries';
 
-const BASE_URL = "https://restcountries.com/v3.1/all?fields=";
-const FIELDS = "name,flags,population,region,capital,cca3";
+// const BASE_URL = "https://restcountries.com/v3.1/all?fields=";
+// const FIELDS = "name,flags,population,region,capital,cca3";
 
 export function useCountries() {
   const [countries, setCountries] = useState([]);
@@ -11,26 +12,31 @@ export function useCountries() {
   useEffect(() => {
     let cancelled = false;
 
-    async function fetchCountries() {
+    async function getCountries() {
       try {
         setLoading(true);
         setError(null); // clear any previous error state before attempt
 
-        const response = await fetch(`${BASE_URL}${FIELDS}`);
+        // const response = await fetch(`${BASE_URL}${FIELDS}`);
+        const { list } = await loadCountries(); // normalized & sorted
 
-        if (!response.ok) {
-          throw new Error(`API error: ${response.status}`);
-        }
-
-        const data = await response.json();
-
+        // if (!response.ok) {
+        //   throw new Error(`API error: ${response.status}`);
+        // }
         if (!cancelled) {
-          const sortedCountries = data.sort((a, b) => a.name.common.localeCompare(b.name.common))
-          setCountries(sortedCountries);
+          setCountries(list)
         }
+
+        // const data = await response.json();
+
+        // if (!cancelled) {
+        //   const sortedCountries = data.sort((a, b) => a.name.common.localeCompare(b.name.common))
+        //   setCountries(sortedCountries);
+        // }
       } catch (error) {
         if (!cancelled) {
-          setError(error.message);
+          // setError(error.message);
+          setError(`Could not load country data: ${error.message}`);
         }
       } finally {
         if (!cancelled) {
@@ -39,7 +45,7 @@ export function useCountries() {
       }
     }
 
-    fetchCountries();
+    getCountries();
 
     // cleanup - don't attempt to set state on unmounted component
     return () => {
